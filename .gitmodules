@@ -1,0 +1,12 @@
+[submodule "pinia"]
+	path = pinia
+	url = https://github.com/engvuchen/pinia
+[submodule "vuex-docs"]
+	path = vuex-docs
+	url = https://github.com/engvuchen/vuex-docs
+[submodule "vue-router"]
+	path = vue-router
+	url = https://github.com/engvuchen/vue-router
+[submodule "docs-zh-cn"]
+	path = docs-zh-cn
+	url = https://github.com/engvuchen/docs-zh-cn
