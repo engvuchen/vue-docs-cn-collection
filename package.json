@@ -1,0 +1,26 @@
+{
+  "name": "vue-docs-cn-collection",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Vue-Docs-Cn-Collection",
+  "main": "ts-get-all-zh-docs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/engvuchen/vue-docs-cn-collection.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/engvuchen/vue-docs-cn-collection/issues"
+  },
+  "homepage": "https://github.com/engvuchen/vue-docs-cn-collection#readme",
+  "dependencies": {
+    "@clack/prompts": "^0.6.3",
+    "i": "^0.3.7",
+    "npm": "^9.6.6"
+  }
+}
