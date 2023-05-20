@@ -1,6 +1,5 @@
 {
   "name": "vue-docs-cn-collection",
-  "type": "module",
   "version": "1.0.0",
   "description": "Vue-Docs-Cn-Collection",
   "main": "ts-get-all-zh-docs.js",
@@ -20,6 +19,7 @@
   "homepage": "https://github.com/engvuchen/vue-docs-cn-collection#readme",
   "dependencies": {
     "@clack/prompts": "^0.6.3",
+    "gogocode": "^1.0.55",
     "i": "^0.3.7",
     "npm": "^9.6.6"
   }

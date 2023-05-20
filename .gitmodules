@@ -10,3 +10,6 @@
 [submodule "docs-zh-cn"]
 	path = docs-zh-cn
 	url = https://github.com/engvuchen/docs-zh-cn
+[submodule "docs-cn"]
+	path = docs-cn
+	url = https://github.com/vitejs/docs-cn
