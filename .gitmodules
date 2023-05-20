@@ -1,15 +1,15 @@
 [submodule "pinia"]
 	path = pinia
-	url = https://github.com/engvuchen/pinia
+	url = https://github.com/vuejs/pinia
 [submodule "vuex-docs"]
 	path = vuex-docs
-	url = https://github.com/engvuchen/vuex-docs
+	url = https://github.com/vuejs/vuex
 [submodule "vue-router"]
 	path = vue-router
-	url = https://github.com/engvuchen/vue-router
+	url = https://github.com/vuejs/vue-router
 [submodule "docs-zh-cn"]
 	path = docs-zh-cn
-	url = https://github.com/engvuchen/docs-zh-cn
+	url = https://github.com/vuejs-translations/docs-zh-cn
 [submodule "docs-cn"]
 	path = docs-cn
 	url = https://github.com/vitejs/docs-cn
