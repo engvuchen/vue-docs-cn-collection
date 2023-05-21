@@ -35,7 +35,6 @@ async function main() {
     let pkgPath = `${dir}/package.json`;
     let pkgStr = await readFile(pkgPath, 'utf-8');
     if (!pkgStr) return console.log(`不存在 ${pkgPath}`);
-
     let pkg = JSON.parse(pkgStr);
     mergeDocs(pkg);
   });
@@ -60,9 +59,9 @@ async function mergeDocs(pkg) {
   let docsConfPath = docsConfPathMap[pkgName];
   if (!docsConfPath) throw new RangeError(`不支持${pkgName}，文档配置找不到`);
   let docsConf = await getDocsConf(docsConfPath, pkgName);
-  let oriList = docsConf;
   let dataList = await Promise.all(
-    oriList.map(pathConf => {
+    // 目前配置数组只有 str / obj，先简单处理
+    docsConf.map(pathConf => {
       if (typeof pathConf === 'object') {
         // 配置是对象
         return childTxtHandler(pathConf, pkgName);
@@ -73,9 +72,24 @@ async function mergeDocs(pkg) {
     })
   );
 
+  let countList = [];
+  while (docsConf.length) {
+    let item = docsConf.pop();
+    if (typeof item === 'string') {
+      countList.push(item);
+      continue;
+    }
+    let { children = [], items = [], link } = item || {};
+    if (link) {
+      countList.push(item);
+    } else {
+      docsConf.push(...children, ...items);
+    }
+  }
+
   let prefix = pkgName.replace(/[/]+/g, '-') || 'vue3'; // '/' 会被识别为目录，处理它
   writeFile(`${prefix}-all-zh-docs.md`, dataList.join('\n'));
-  console.log(`执行成功，跳转 ./${prefix}-all-zh-docs.md 查看`);
+  console.log(`成功，文档共 ${countList.length} 篇，查看 ./${prefix}-all-zh-docs.md`);
 }
 async function getDocsConf(docsConfPath = '', pkgName) {
   let str = await readFile(docsConfPath, 'utf-8');
@@ -104,8 +118,8 @@ async function childTxtHandler(pathConf, pkgName) {
       let path = typeof pathConf === 'string' ? pathConf : pathConf.link; // pathConf<Object|String>
       let fullPath = addPathToFull(path, pkgName);
       let str = await readFile(fullPath, 'utf-8');
-      str = str.replace(/(?<=(#.+?))\%.+?\%/g, ''); // 去掉 pinia 标题的旁边模版字符串
-      // 文章内容都加上二级标题
+      // str = str.replace(/(?<=(#.+?))\%.+?\%/g, ''); // 去掉 pinia 标题的旁边模版字符串
+      // 添加文章一级标题。剩余标题需添加 '#' 变成次级标题
       let { title, text } = pathConf || {};
       let list = [str];
       if (title || text) {
@@ -114,7 +128,6 @@ async function childTxtHandler(pathConf, pkgName) {
       return list.join('\n\n');
     })
   );
-
   return addSelectedTitleToArticles(title || text, list).join('\n\n');
 }
 function addPathToFull(fsPath = '', pkgName = '') {

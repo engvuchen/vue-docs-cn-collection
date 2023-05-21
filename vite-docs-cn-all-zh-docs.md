@@ -791,7 +791,7 @@ import MyWorker from './worker?worker&url'
 
 ##### CSS 代码分割 {###css-code-splitting}
 
-Vite 会自动地将一个异步 chunk 模块中使用到的 CSS 代码抽取出来并为其生成一个单独的文件。这个 CSS 文件将在该异步 chunk 加载完成时自动通过一个 `<link>` 标签载入，该异步 chunk 会保证只在 CSS 加载完毕后再执行，避免发生 [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content###:~:text=A20of20content,before20information20retrieved.) 。
+Vite 会自动地将一个异步 chunk 模块中使用到的 CSS 代码抽取出来并为其生成一个单独的文件。这个 CSS 文件将在该异步 chunk 加载完成时自动通过一个 `<link>` 标签载入，该异步 chunk 会保证只在 CSS 加载完毕后再执行，避免发生 [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content###:~:text=A%20flash%20of%20unstyled%20content,before%20all%20information%20is%20retrieved.) 。
 
 如果你更倾向于将所有的 CSS 抽取到一个文件中，你可以通过设置 [`build.cssCodeSplit`](/config/build-options.md###build-csscodesplit) 为 `false` 来禁用 CSS 代码分割。
 
