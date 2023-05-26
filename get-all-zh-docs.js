@@ -12,7 +12,7 @@ const { readFile, writeFile, readdir } = require('fs/promises');
 const { multiselect, isCancel } = require('@clack/prompts');
 const $ = require('gogocode');
 
-main();
+// main();
 
 async function main() {
   let dirs = (await readdir('./', { withFileTypes: true })).reduce((accu, curr) => {
@@ -47,6 +47,13 @@ const docsConfPathMap = {
   'vite-docs-cn': 'docs-cn/.vitepress/config.ts',
   '': 'docs-zh-cn/.vitepress/config.ts', // vue3 中文文档独立，且没有 name
 };
+let sidebarSelectorMap = {
+  vuex: `{ '/zh/': { sidebar: $_$1 } }`,
+  'vue-router': `{ '/zh/': { sidebar: $_$1 } }`,
+  '@pinia/root': `{ sidebar: { '/zh/': $_$1 } }`,
+  'vite-docs-cn': `{ themeConfig: { sidebar: { '/guide/': $_$1 } } }`,
+  '': `const sidebar: ThemeConfig['sidebar'] = { '/guide/': $_$1 }`, // vue3
+};
 const accessPathPrefixMap = {
   vuex: 'vuex-docs/docs',
   'vue-router': 'vue-router/docs',
@@ -54,11 +61,13 @@ const accessPathPrefixMap = {
   'vite-docs-cn': 'docs-cn',
   '': 'docs-zh-cn/src', // vue3 中文文档独立，且没有 name
 };
+
 async function mergeDocs(pkg) {
   let { name: pkgName = '' } = pkg;
   let docsConfPath = docsConfPathMap[pkgName];
   if (!docsConfPath) throw new RangeError(`不支持${pkgName}，文档配置找不到`);
-  let docsConf = await getDocsConf(docsConfPath, pkgName);
+  let selector = sidebarSelectorMap[pkgName];
+  let docsConf = await getDocsConf(docsConfPath, selector);
   let dataList = await Promise.all(
     // 目前配置数组只有 str / obj，先简单处理
     docsConf.map(pathConf => {
@@ -91,22 +100,18 @@ async function mergeDocs(pkg) {
   writeFile(`${prefix}-all-zh-docs.md`, dataList.join('\n'));
   console.log(`成功，文档共 ${countList.length} 篇，查看 ./${prefix}-all-zh-docs.md`);
 }
-async function getDocsConf(docsConfPath = '', pkgName) {
+async function getDocsConf(docsConfPath = '', selector, selectorNum = 1) {
   let str = await readFile(docsConfPath, 'utf-8');
-  let selectorMap = {
-    vuex: `{ '/zh/': { sidebar: $_$1 } }`,
-    'vue-router': `{ '/zh/': { sidebar: $_$1 } }`,
-    '@pinia/root': `{ sidebar: { '/zh/': $_$1 } }`,
-    'vite-docs-cn': `{ themeConfig: { sidebar: { '/guide/': $_$1 } } }`,
-    '': `const sidebar: ThemeConfig['sidebar'] = { '/guide/': $_$1 }`, // vue3
-  };
-  let selector = selectorMap[pkgName];
   let result = [];
   $(str)
     .find(selector)
     .each(item => {
-      result.push(item.match[1][0].value);
+      for (let i = 0; i < selectorNum; i++) {
+        result.push(item.match[i + 1][0].value);
+      }
     });
+
+  console.log('result', result);
   return eval(result.join('\n'));
 }
 async function childTxtHandler(pathConf, pkgName) {
@@ -132,22 +137,31 @@ async function childTxtHandler(pathConf, pkgName) {
 }
 function addPathToFull(fsPath = '', pkgName = '') {
   let lastPart = fsPath.split('/').pop();
-  // 处理文件夹的 md 文件，或无 .md 后缀。例 src/docs -> src/docs/index.md；src/docs -> src/docs.md
+  // 为部分路径添加 .md 后缀。例 src/docs -> src/docs/index.md；src/docs -> src/docs.md
   if (!lastPart.endsWith('.md')) {
-    fsPath = fsPath.replace(/[.].+/, '');
+    // fsPath = fsPath.replace(/[.].+/, ''); // 去掉也能正常执行？
     fsPath = `${accessPathPrefixMap[pkgName]}${fsPath}`;
     if (lastPart === '') {
-      let suffix = 'index.md';
-      if (docsConfPathMap[pkgName].includes('.vuepress')) {
-        suffix = 'README.md';
-      }
-      return `${fsPath}${suffix}`;
+      // let suffix = 'index.md';
+      // if (docsConfPathMap[pkgName].includes('.vuepress')) {
+      //   suffix = 'README.md';
+      // }
+      // return `${fsPath}${suffix}`;
+      return paddingSuffix(fsPath);
     }
     return `${fsPath}.md`;
   } else {
     fsPath = `${accessPathPrefixMap[pkgName]}${fsPath}`;
   }
   return fsPath;
+}
+function paddingSuffix(fsPath) {
+  let suffix = 'index.md';
+  if (docsConfPathMap[pkgName].includes('.vuepress')) {
+    suffix = 'README.md';
+  }
+
+  return `${fsPath}${suffix}`;
 }
 // 文章都是规则的，从一级标题开始。所以这里添加标题，几级标题仅需要简单递增
 function addSelectedTitleToArticles(title, oriList) {
@@ -162,3 +176,9 @@ function addSelectedTitleToArticles(title, oriList) {
   list.unshift(`${titleLevelPrefix} ${title}`);
   return list;
 }
+
+module.exports = {
+  main,
+  getDocsConf,
+  paddingSuffix,
+};
