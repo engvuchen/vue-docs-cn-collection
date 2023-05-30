@@ -58,7 +58,7 @@ npm run build
 ::: tip 注意
 教程中的案例代码将使用 [ES2015](https://github.com/lukehoban/es6features) 来编写。
 
-同时，所有的例子都将使用完整版的 Vue 以解析模板。更多细节请[移步这里](https://cn.vuejs.org/v2/guide/installation.html##运行时-编译器-vs-只包含运行时)。
+同时，所有的例子都将使用完整版的 Vue 以解析模板。更多细节请[移步这里](https://cn.vuejs.org/v2/guide/installation.html#运行时-编译器-vs-只包含运行时)。
 :::
 
 <div class="vueschool"><a href="https://vueschool.io/courses/vue-router-for-everyone?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to build powerful Single Page Applications with the Vue Router on Vue School">观看 Vue School 的关于 Vue Router 的免费视频课程 (英文)</a></div>
@@ -117,7 +117,7 @@ const router = new VueRouter({
 // 从而让整个应用都有路由功能
 const app = new Vue({
   router
-}).$mount('##app')
+}).$mount('#app')
 
 // 现在，应用已经启动了！
 ```
@@ -145,7 +145,7 @@ export default {
 
 你可以看看这个[在线的](https://jsfiddle.net/yyx990803/xgrjzsup/)例子。
 
-要注意，当 `<router-link>` 对应的路由匹配成功，将自动设置 class 属性值 `.router-link-active`。查看 [API 文档](../api/##router-link) 学习更多相关内容。
+要注意，当 `<router-link>` 对应的路由匹配成功，将自动设置 class 属性值 `.router-link-active`。查看 [API 文档](https://v3.router.vuejs.org/zh/api/#router-link) 学习更多相关内容。
 
 
 ## 动态路由匹配
@@ -187,7 +187,7 @@ const User = {
 | /user/:username               | /user/evan          | `{ username: 'evan' }`                 |
 | /user/:username/post/:post_id | /user/evan/post/123 | `{ username: 'evan', post_id: '123' }` |
 
-除了 `$route.params` 外，`$route` 对象还提供了其它有用的信息，例如，`$route.query` (如果 URL 中有查询参数)、`$route.hash` 等等。你可以查看 [API 文档](../../api/##路由对象) 的详细说明。
+除了 `$route.params` 外，`$route` 对象还提供了其它有用的信息，例如，`$route.query` (如果 URL 中有查询参数)、`$route.hash` 等等。你可以查看 [API 文档](https://v3.router.vuejs.org/zh/api/#路由对象) 的详细说明。
 
 ### 响应路由参数的变化
 
@@ -206,7 +206,7 @@ const User = {
 }
 ```
 
-或者使用 2.2 中引入的 `beforeRouteUpdate` [导航守卫](../advanced/navigation-guards.html)：
+或者使用 2.2 中引入的 `beforeRouteUpdate` [导航守卫](https://v3.router.vuejs.org/zh/guide/advanced/navigation-guards)：
 
 ```js
 const User = {
@@ -233,7 +233,7 @@ const User = {
 }
 ```
 
-当使用*通配符*路由时，请确保路由的顺序是正确的，也就是说含有*通配符*的路由应该放在最后。路由 `{ path: '*' }` 通常用于客户端 404 错误。如果你使用了*History 模式*，请确保[正确配置你的服务器](./history-mode.md)。
+当使用*通配符*路由时，请确保路由的顺序是正确的，也就是说含有*通配符*的路由应该放在最后。路由 `{ path: '*' }` 通常用于客户端 404 错误。如果你使用了*History 模式*，请确保[正确配置你的服务器](https://v3.router.vuejs.org/zh/guide/essentials/history-mode)。
 
 当使用一个*通配符*时，`$route.params` 内会自动添加一个名为 `pathMatch` 参数。它包含了 URL 通过*通配符*被匹配的部分：
 
@@ -248,7 +248,7 @@ this.$route.params.pathMatch // '/non-existing'
 
 ### 高级匹配模式
 
-`vue-router` 使用 [path-to-regexp](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0) 作为路径匹配引擎，所以支持很多高级的匹配模式，例如：可选的动态路径参数、匹配零个或多个、一个或多个，甚至是自定义正则匹配。查看它的[文档](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0##parameters)学习高阶的路径匹配，还有[这个例子 ](https://github.com/vuejs/vue-router/blob/dev/examples/route-matching/app.js)展示 `vue-router` 怎么使用这类匹配。
+`vue-router` 使用 [path-to-regexp](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0) 作为路径匹配引擎，所以支持很多高级的匹配模式，例如：可选的动态路径参数、匹配零个或多个、一个或多个，甚至是自定义正则匹配。查看它的[文档](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0#parameters)学习高阶的路径匹配，还有[这个例子 ](https://github.com/vuejs/vue-router/blob/dev/examples/route-matching/app.js)展示 `vue-router` 怎么使用这类匹配。
 
 ### 匹配优先级
 
@@ -409,7 +409,7 @@ router.push({ path: '/user', params: { userId }}) // -> /user
 
 在 2.2.0+，可选的在 `router.push` 或 `router.replace` 中提供 `onComplete` 和 `onAbort` 回调作为第二个和第三个参数。这些回调将会在导航成功完成 (在所有的异步钩子被解析之后) 或终止 (导航到相同的路由、或在当前导航完成之前导航到另一个不同的路由) 的时候进行相应的调用。在 3.1.0+，可以省略第二个和第三个参数，此时如果支持 Promise，`router.push` 或 `router.replace` 将返回一个 Promise。
 
-**注意**： 如果目的地和当前路由相同，只有参数发生了改变 (比如从一个用户资料到另一个 `/users/1` -> `/users/2`)，你需要使用 [`beforeRouteUpdate`](./dynamic-matching.md##响应路由参数的变化) 来响应这个变化 (比如抓取用户信息)。
+**注意**： 如果目的地和当前路由相同，只有参数发生了改变 (比如从一个用户资料到另一个 `/users/1` -> `/users/2`)，你需要使用 [`beforeRouteUpdate`](https://v3.router.vuejs.org/zh/guide/essentials/dynamic-matching.html#响应路由参数的变化) 来响应这个变化 (比如抓取用户信息)。
 
 ### `router.replace(location, onComplete?, onAbort?)`
 
@@ -609,7 +609,7 @@ const router = new VueRouter({
 })
 ```
 
-注意[导航守卫](../advanced/navigation-guards.md)并没有应用在跳转路由上，而仅仅应用在其目标上。在下面这个例子中，为 `/a` 路由添加一个 `beforeEnter` 守卫并不会有任何效果。
+注意[导航守卫](https://v3.router.vuejs.org/zh/guide/advanced/navigation-guards)并没有应用在跳转路由上，而仅仅应用在其目标上。在下面这个例子中，为 `/a` 路由添加一个 `beforeEnter` 守卫并不会有任何效果。
 
 其它高级用法，请参考[例子](https://github.com/vuejs/vue-router/blob/dev/examples/redirect/app.js)。
 
@@ -740,7 +740,7 @@ const router = new VueRouter({
 
 ### 后端配置例子
 
-**注意**：下列示例假设你在根目录服务这个应用。如果想部署到一个子目录，你需要使用 [Vue CLI 的 `publicPath` 选项](https://cli.vuejs.org/zh/config/##publicpath) 和相关的 [router `base` property](https://router.vuejs.org/zh/api/##base)。你还需要把下列示例中的根目录调整成为子目录 (例如用 `RewriteBase /name-of-your-subfolder/` 替换掉 `RewriteBase /`)。
+**注意**：下列示例假设你在根目录服务这个应用。如果想部署到一个子目录，你需要使用 [Vue CLI 的 `publicPath` 选项](https://cli.vuejs.org/zh/config/#publicpath) 和相关的 [router `base` property](https://router.vuejs.org/zh/api/#base)。你还需要把下列示例中的根目录调整成为子目录 (例如用 `RewriteBase /name-of-your-subfolder/` 替换掉 `RewriteBase /`)。
 
 ##### Apache
 
@@ -758,7 +758,7 @@ const router = new VueRouter({
 </IfModule>
 ```
 
-除了 `mod_rewrite`，你也可以使用 [`FallbackResource`](https://httpd.apache.org/docs/2.2/mod/mod_dir.html##fallbackresource)。
+除了 `mod_rewrite`，你也可以使用 [`FallbackResource`](https://httpd.apache.org/docs/2.2/mod/mod_dir.html#fallbackresource)。
 
 ##### nginx
 
@@ -873,7 +873,7 @@ const router = new VueRouter({
 
 正如其名，`vue-router` 提供的导航守卫主要用来通过跳转或取消的方式守卫导航。有多种机会植入路由导航过程中：全局的, 单个路由独享的, 或者组件级的。
 
-记住**参数或查询的改变并不会触发进入/离开的导航守卫**。你可以通过[观察 `$route` 对象](../essentials/dynamic-matching.md##响应路由参数的变化)来应对这些变化，或使用 `beforeRouteUpdate` 的组件内守卫。
+记住**参数或查询的改变并不会触发进入/离开的导航守卫**。你可以通过[观察 `$route` 对象](https://v3.router.vuejs.org/zh/guide/essentials/dynamic-matching.html#响应路由参数的变化)来应对这些变化，或使用 `beforeRouteUpdate` 的组件内守卫。
 
 <div class="vueschool"><a href="https://vueschool.io/lessons/how-to-configure-an-authentication-middleware-route-guard-with-vue-router?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to create an authentication middleware with a global route guard on Vue School">观看 Vue School 的导航守卫如何工作的免费视频课程 (英文)</a></div>
 
@@ -893,7 +893,7 @@ router.beforeEach((to, from, next) => {
 
 每个守卫方法接收三个参数：
 
-- **`to: Route`**: 即将要进入的目标 [路由对象](../../api/##路由对象)
+- **`to: Route`**: 即将要进入的目标 [路由对象](https://v3.router.vuejs.org/zh/api/#路由对象)
 
 - **`from: Route`**: 当前导航正要离开的路由
 
@@ -903,9 +903,9 @@ router.beforeEach((to, from, next) => {
 
   - **`next(false)`**: 中断当前的导航。如果浏览器的 URL 改变了 (可能是用户手动或者浏览器后退按钮)，那么 URL 地址会重置到 `from` 路由对应的地址。
 
-  - **`next('/')` 或者 `next({ path: '/' })`**: 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。你可以向 `next` 传递任意位置对象，且允许设置诸如 `replace: true`、`name: 'home'` 之类的选项以及任何用在 [`router-link` 的 `to` prop](../../api/##to) 或 [`router.push`](../../api/##router-push) 中的选项。
+  - **`next('/')` 或者 `next({ path: '/' })`**: 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。你可以向 `next` 传递任意位置对象，且允许设置诸如 `replace: true`、`name: 'home'` 之类的选项以及任何用在 [`router-link` 的 `to` prop](https://v3.router.vuejs.org/zh/api/#to) 或 [`router.push`](https://v3.router.vuejs.org/zh/api/#router-push) 中的选项。
 
-  - **`next(error)`**: (2.4.0+) 如果传入 `next` 的参数是一个 `Error` 实例，则导航会被终止且该错误会被传递给 [`router.onError()`](../../api/##router-onerror) 注册过的回调。
+  - **`next(error)`**: (2.4.0+) 如果传入 `next` 的参数是一个 `Error` 实例，则导航会被终止且该错误会被传递给 [`router.onError()`](https://v3.router.vuejs.org/zh/api/#router-onerror) 注册过的回调。
 
 **确保 `next` 函数在任何给定的导航守卫中都被严格调用一次。它可以出现多于一次，但是只能在所有的逻辑路径都不重叠的情况下，否则钩子永远都不会被解析或报错**。这里有一个在用户未能验证身份时重定向到 `/login` 的示例：
 
@@ -1331,7 +1331,7 @@ scrollBehavior (to, from, savedPosition) {
 }
 ```
 
-我们还可以利用[路由元信息](meta.md)更细颗粒度地控制滚动。查看完整例子请[移步这里](https://github.com/vuejs/vue-router/blob/dev/examples/scroll-behavior/app.js)。
+我们还可以利用[路由元信息](https://v3.router.vuejs.org/zh/guide/advanced/meta)更细颗粒度地控制滚动。查看完整例子请[移步这里](https://github.com/vuejs/vue-router/blob/dev/examples/scroll-behavior/app.js)。
 
 ### 异步滚动
 
@@ -1373,7 +1373,7 @@ scrollBehavior (to, from, savedPosition) {
 
 当打包构建应用时，JavaScript 包会变得非常大，影响页面加载。如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就更加高效了。
 
-结合 Vue 的[异步组件](https://cn.vuejs.org/v2/guide/components-dynamic-async.html##异步组件)和 Webpack 的[代码分割功能](https://doc.webpack-china.org/guides/code-splitting-async/##require-ensure-/)，轻松实现路由组件的懒加载。
+结合 Vue 的[异步组件](https://cn.vuejs.org/v2/guide/components-dynamic-async.html#异步组件)和 Webpack 的[代码分割功能](https://doc.webpack-china.org/guides/code-splitting-async/#require-ensure-/)，轻松实现路由组件的懒加载。
 
 首先，可以将异步组件定义为返回一个 Promise 的工厂函数 (该函数返回的 Promise 应该 resolve 组件本身)：
 
@@ -1410,7 +1410,7 @@ const router = new VueRouter({
 
 ### 把组件按组分块
 
-有时候我们想把某个路由下的所有组件都打包在同个异步块 (chunk) 中。只需要使用 [命名 chunk](https://webpack.js.org/guides/code-splitting-require/##chunkname)，一个特殊的注释语法来提供 chunk name (需要 Webpack > 2.4)。
+有时候我们想把某个路由下的所有组件都打包在同个异步块 (chunk) 中。只需要使用 [命名 chunk](https://webpack.js.org/guides/code-splitting-require/#chunkname)，一个特殊的注释语法来提供 chunk name (需要 Webpack > 2.4)。
 
 ```js
 const Foo = () => import(/* webpackChunkName: "group-foo" */ './Foo.vue')
@@ -1432,8 +1432,8 @@ Webpack 会将任何一个异步模块与相同的块名称组合到相同的异
 当使用 `router-link` 组件时，Vue Router 会自动调用 `router.push` 来触发一次导航。 虽然大多数链接的预期行为是将用户导航到一个新页面，但也有少数情况下用户将留在同一页面上：
 
 - 用户已经位于他们正在尝试导航到的页面
-- 一个[导航守卫](./navigation-guards.md)通过调用 `next(false)` 中断了这次导航
-- 一个[导航守卫](./navigation-guards.md)抛出了一个错误，或者调用了 `next(new Error())`
+- 一个[导航守卫](https://v3.router.vuejs.org/zh/guide/advanced/navigation-guards)通过调用 `next(false)` 中断了这次导航
+- 一个[导航守卫](https://v3.router.vuejs.org/zh/guide/advanced/navigation-guards)抛出了一个错误，或者调用了 `next(new Error())`
 
 当使用 `router-link` 组件时，**这些失败都不会打印出错误**。然而，如果你使用 `router.push` 或者 `router.replace` 的话，可能会在控制台看到一条 _"Uncaught (in promise) Error"_ 这样的错误，后面跟着一条更具体的消息。让我们来了解一下如何区分*导航故障*。
 

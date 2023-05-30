@@ -5,7 +5,7 @@
   "main": "ts-get-all-zh-docs.js",
   "scripts": {
     "prepare": "git submodule update --init",
-    "dev": "node get-all-zh-docs.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
