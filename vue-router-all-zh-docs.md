@@ -145,7 +145,7 @@ export default {
 
 你可以看看这个[在线的](https://jsfiddle.net/yyx990803/xgrjzsup/)例子。
 
-要注意，当 `<router-link>` 对应的路由匹配成功，将自动设置 class 属性值 `.router-link-active`。查看 [API 文档](https://v3.router.vuejs.org/zh/api/#router-link) 学习更多相关内容。
+要注意，当 `<router-link>` 对应的路由匹配成功，将自动设置 class 属性值 `.router-link-active`。查看 [API 文档](https://v3.router.vuejs.org/zh/api#router-link) 学习更多相关内容。
 
 
 ## 动态路由匹配
@@ -187,7 +187,7 @@ const User = {
 | /user/:username               | /user/evan          | `{ username: 'evan' }`                 |
 | /user/:username/post/:post_id | /user/evan/post/123 | `{ username: 'evan', post_id: '123' }` |
 
-除了 `$route.params` 外，`$route` 对象还提供了其它有用的信息，例如，`$route.query` (如果 URL 中有查询参数)、`$route.hash` 等等。你可以查看 [API 文档](https://v3.router.vuejs.org/zh/api/#路由对象) 的详细说明。
+除了 `$route.params` 外，`$route` 对象还提供了其它有用的信息，例如，`$route.query` (如果 URL 中有查询参数)、`$route.hash` 等等。你可以查看 [API 文档](https://v3.router.vuejs.org/zh/api#路由对象) 的详细说明。
 
 ### 响应路由参数的变化
 
@@ -206,7 +206,7 @@ const User = {
 }
 ```
 
-或者使用 2.2 中引入的 `beforeRouteUpdate` [导航守卫](https://v3.router.vuejs.org/zh/guide/advanced/navigation-guards)：
+或者使用 2.2 中引入的 `beforeRouteUpdate` [导航守卫](https://v3.router.vuejs.org/zh/guide/advanced/navigation-guards.html)：
 
 ```js
 const User = {
@@ -409,7 +409,7 @@ router.push({ path: '/user', params: { userId }}) // -> /user
 
 在 2.2.0+，可选的在 `router.push` 或 `router.replace` 中提供 `onComplete` 和 `onAbort` 回调作为第二个和第三个参数。这些回调将会在导航成功完成 (在所有的异步钩子被解析之后) 或终止 (导航到相同的路由、或在当前导航完成之前导航到另一个不同的路由) 的时候进行相应的调用。在 3.1.0+，可以省略第二个和第三个参数，此时如果支持 Promise，`router.push` 或 `router.replace` 将返回一个 Promise。
 
-**注意**： 如果目的地和当前路由相同，只有参数发生了改变 (比如从一个用户资料到另一个 `/users/1` -> `/users/2`)，你需要使用 [`beforeRouteUpdate`](https://v3.router.vuejs.org/zh/guide/essentials/dynamic-matching.html#响应路由参数的变化) 来响应这个变化 (比如抓取用户信息)。
+**注意**： 如果目的地和当前路由相同，只有参数发生了改变 (比如从一个用户资料到另一个 `/users/1` -> `/users/2`)，你需要使用 [`beforeRouteUpdate`](https://v3.router.vuejs.org/zh/guide/essentials/dynamic-matching#响应路由参数的变化) 来响应这个变化 (比如抓取用户信息)。
 
 ### `router.replace(location, onComplete?, onAbort?)`
 
@@ -873,7 +873,7 @@ const router = new VueRouter({
 
 正如其名，`vue-router` 提供的导航守卫主要用来通过跳转或取消的方式守卫导航。有多种机会植入路由导航过程中：全局的, 单个路由独享的, 或者组件级的。
 
-记住**参数或查询的改变并不会触发进入/离开的导航守卫**。你可以通过[观察 `$route` 对象](https://v3.router.vuejs.org/zh/guide/essentials/dynamic-matching.html#响应路由参数的变化)来应对这些变化，或使用 `beforeRouteUpdate` 的组件内守卫。
+记住**参数或查询的改变并不会触发进入/离开的导航守卫**。你可以通过[观察 `$route` 对象](https://v3.router.vuejs.org/zh/guide/essentials/dynamic-matching#响应路由参数的变化)来应对这些变化，或使用 `beforeRouteUpdate` 的组件内守卫。
 
 <div class="vueschool"><a href="https://vueschool.io/lessons/how-to-configure-an-authentication-middleware-route-guard-with-vue-router?friend=vuerouter" target="_blank" rel="sponsored noopener" title="Learn how to create an authentication middleware with a global route guard on Vue School">观看 Vue School 的导航守卫如何工作的免费视频课程 (英文)</a></div>
 
@@ -893,7 +893,7 @@ router.beforeEach((to, from, next) => {
 
 每个守卫方法接收三个参数：
 
-- **`to: Route`**: 即将要进入的目标 [路由对象](https://v3.router.vuejs.org/zh/api/#路由对象)
+- **`to: Route`**: 即将要进入的目标 [路由对象](https://v3.router.vuejs.org/zh/api#路由对象)
 
 - **`from: Route`**: 当前导航正要离开的路由
 
@@ -903,9 +903,9 @@ router.beforeEach((to, from, next) => {
 
   - **`next(false)`**: 中断当前的导航。如果浏览器的 URL 改变了 (可能是用户手动或者浏览器后退按钮)，那么 URL 地址会重置到 `from` 路由对应的地址。
 
-  - **`next('/')` 或者 `next({ path: '/' })`**: 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。你可以向 `next` 传递任意位置对象，且允许设置诸如 `replace: true`、`name: 'home'` 之类的选项以及任何用在 [`router-link` 的 `to` prop](https://v3.router.vuejs.org/zh/api/#to) 或 [`router.push`](https://v3.router.vuejs.org/zh/api/#router-push) 中的选项。
+  - **`next('/')` 或者 `next({ path: '/' })`**: 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。你可以向 `next` 传递任意位置对象，且允许设置诸如 `replace: true`、`name: 'home'` 之类的选项以及任何用在 [`router-link` 的 `to` prop](https://v3.router.vuejs.org/zh/api#to) 或 [`router.push`](https://v3.router.vuejs.org/zh/api#router-push) 中的选项。
 
-  - **`next(error)`**: (2.4.0+) 如果传入 `next` 的参数是一个 `Error` 实例，则导航会被终止且该错误会被传递给 [`router.onError()`](https://v3.router.vuejs.org/zh/api/#router-onerror) 注册过的回调。
+  - **`next(error)`**: (2.4.0+) 如果传入 `next` 的参数是一个 `Error` 实例，则导航会被终止且该错误会被传递给 [`router.onError()`](https://v3.router.vuejs.org/zh/api#router-onerror) 注册过的回调。
 
 **确保 `next` 函数在任何给定的导航守卫中都被严格调用一次。它可以出现多于一次，但是只能在所有的逻辑路径都不重叠的情况下，否则钩子永远都不会被解析或报错**。这里有一个在用户未能验证身份时重定向到 `/login` 的示例：
 

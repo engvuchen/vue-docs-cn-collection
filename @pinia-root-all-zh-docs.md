@@ -28,7 +28,7 @@ Pinia 是 Vue 的专属状态管理库，它允许你跨组件或页面共享状
 
 #### 基础示例 %{#basic-example}%
 
-下面就是 pinia API 的基本用法 (为继续阅读本简介请确保你已阅读过了[开始](https://pinia.vuejs.org/zh/getting-started.html)章节)。你可以先创建一个 Store：
+下面就是 pinia API 的基本用法 (为继续阅读本简介请确保你已阅读过了[开始](https://pinia.vuejs.org/zh/getting-started)章节)。你可以先创建一个 Store：
 
 ```js
 // stores/counter.js
@@ -193,7 +193,7 @@ Pinia API 与 Vuex(<=4) 也有很多不同，即：
 - 不再有嵌套结构的**模块**。你仍然可以通过导入和使用另一个 Store 来隐含地嵌套 stores 空间。虽然 Pinia 从设计上提供的是一个扁平的结构，但仍然能够在 Store 之间进行交叉组合。**你甚至可以让 Stores 有循环依赖关系**。
 - 不再有**可命名的模块**。考虑到 Store 的扁平架构，Store 的命名取决于它们的定义方式，你甚至可以说所有 Store 都应该命名。
 
-关于如何将现有 Vuex(<=4) 的项目转化为使用 Pinia 的更多详细说明，请参阅 [Vuex 迁移指南](https://pinia.vuejs.org/zh/cookbook/migration-vuex.html)。
+关于如何将现有 Vuex(<=4) 的项目转化为使用 Pinia 的更多详细说明，请参阅 [Vuex 迁移指南](https://pinia.vuejs.org/zh/cookbook/migration-vuex)。
 
 
 ## 开始
@@ -209,7 +209,7 @@ npm install pinia
 ```
 
 :::tip
-如果你的应用使用的 Vue 版本低于 2.7，你还需要安装组合式 API 包：`@vue/composition-api`。如果你使用的是 Nuxt，你应该参考[这篇指南](https://pinia.vuejs.org/zh/ssr/nuxt.html)。
+如果你的应用使用的 Vue 版本低于 2.7，你还需要安装组合式 API 包：`@vue/composition-api`。如果你使用的是 Nuxt，你应该参考[这篇指南](https://pinia.vuejs.org/zh/ssr/nuxt)。
 :::
 
 如果你正在使用 Vue CLI，你可以试试这个[**非官方插件**](https://github.com/wobsoriano/vue-cli-plugin-pinia)。
@@ -250,7 +250,7 @@ new Vue({
 
 #### Store 是什么？%{#what-is-a-store}%
 
-Store (如 Pinia) 是一个保存状态和业务逻辑的实体，它并不与你的组件树绑定。换句话说，**它承载着全局状态**。它有点像一个永远存在的组件，每个组件都可以读取和写入它。它有**三个概念**，[state](https://pinia.vuejs.org/zh/core-concepts/state.html)、[getter](https://pinia.vuejs.org/zh/core-concepts/getters.html) 和 [action](https://pinia.vuejs.org/zh/core-concepts/actions.html)，我们可以假设这些概念相当于组件中的 `data`、 `computed` 和 `methods`。
+Store (如 Pinia) 是一个保存状态和业务逻辑的实体，它并不与你的组件树绑定。换句话说，**它承载着全局状态**。它有点像一个永远存在的组件，每个组件都可以读取和写入它。它有**三个概念**，[state](https://pinia.vuejs.org/zh/core-concepts/state)、[getter](https://pinia.vuejs.org/zh/core-concepts/getters) 和 [action](https://pinia.vuejs.org/zh/core-concepts/actions)，我们可以假设这些概念相当于组件中的 `data`、 `computed` 和 `methods`。
 
 #### 应该在什么时候使用 Store? %{#when-should-i-use-a-store}%
 
@@ -330,11 +330,11 @@ export const useCounterStore = defineStore('counter', () => {
 - `computed()` 就是 `getters`
 - `function()` 就是 `actions`
 
-Setup store 比 [Option Store](https://pinia.vuejs.org/zh/core-concepts/https://pinia.vuejs.org/zh/core-concepts/#option-stores) 带来了更多的灵活性，因为你可以在一个 store 内创建侦听器，并自由地使用任何[组合式函数](https://cn.vuejs.org/guide/reusability/composables.html#composables)。不过，请记住，使用组合式函数会让 [SSR](https://pinia.vuejs.org/zh/cookbook/composables.html) 变得更加复杂。
+Setup store 比 [Option Store](https://pinia.vuejs.org/zh/core-concepts/#option-stores) 带来了更多的灵活性，因为你可以在一个 store 内创建侦听器，并自由地使用任何[组合式函数](https://cn.vuejs.org/guide/reusability/composables.html#composables)。不过，请记住，使用组合式函数会让 [SSR](https://pinia.vuejs.org/zh/cookbook/composables) 变得更加复杂。
 
 #### 你应该选用哪种语法？ %{#what-syntax-should-i-pick}%
 
-和[在 Vue 中如何选择组合式 API 与选项式 API](https://cn.vuejs.org/guide/introduction.html#which-to-choose) 一样，选择你觉得最舒服的那一个就好。如果你还不确定，可以先试试 [Option Store](https://pinia.vuejs.org/zh/core-concepts/https://pinia.vuejs.org/zh/core-concepts/#option-stores)。
+和[在 Vue 中如何选择组合式 API 与选项式 API](https://cn.vuejs.org/guide/introduction.html#which-to-choose) 一样，选择你觉得最舒服的那一个就好。如果你还不确定，可以先试试 [Option Store](https://pinia.vuejs.org/zh/core-concepts/#option-stores)。
 
 #### 使用 Store %{#using-the-store}%
 
@@ -350,7 +350,7 @@ const store = useCounterStore()
 
 你可以定义任意多的 store，但为了让使用 pinia 的益处最大化(比如允许构建工具自动进行代码分割以及 TypeScript 推断)，**你应该在不同的文件中去定义 store**。
 
-如果你还不会使用 `setup` 组件，[你也可以通过**映射辅助函数**来使用 Pinia](https://pinia.vuejs.org/zh/cookbook/options-api.html)。
+如果你还不会使用 `setup` 组件，[你也可以通过**映射辅助函数**来使用 Pinia](https://pinia.vuejs.org/zh/cookbook/options-api)。
 
 一旦 store 被实例化，你可以直接访问在 store 的 `state`、`getters` 和 `actions` 中定义的任何属性。我们将在后续章节继续了解这些细节，目前自动补全将帮助你使用相关属性。
 
@@ -598,7 +598,7 @@ store.$state = { count: 24 }
 store.$patch({ count: 24 })
 ```
 
-你也可以通过变更 `pinia` 实例的 `state` 来设置整个应用的初始 state。这常用于 [SSR 中的激活过程](https://pinia.vuejs.org/zh/ssr/#state-hydration)。
+你也可以通过变更 `pinia` 实例的 `state` 来设置整个应用的初始 state。这常用于 [SSR 中的激活过程](https://pinia.vuejs.org/zh/ssr#state-hydration)。
 
 ```js
 pinia.state.value = {}
@@ -860,7 +860,7 @@ export default defineComponent({
 
 ##### 不使用 `setup()` %{#without-setup}%
 
-你可以使用[前一节的 state](https://pinia.vuejs.org/zh/core-concepts/state.html#options-api) 中的 `mapState()` 函数来将其映射为 getters：
+你可以使用[前一节的 state](https://pinia.vuejs.org/zh/core-concepts/state#options-api) 中的 `mapState()` 函数来将其映射为 getters：
 
 ```js
 import { mapState } from 'pinia'
@@ -909,7 +909,7 @@ export const useCounterStore = defineStore('main', {
 })
 ```
 
-类似 [getter](https://pinia.vuejs.org/zh/core-concepts/getters.html)，action 也可通过 `this` 访问**整个 store 实例**，并支持**完整的类型标注(以及自动补全✨)**。**不同的是，`action` 可以是异步的**，你可以在它们里面 `await` 调用任何 API，以及其他 action！下面是一个使用 [Mande](https://github.com/posva/mande) 的例子。请注意，你使用什么库并不重要，只要你得到的是一个`Promise`，你甚至可以 (在浏览器中) 使用原生 `fetch` 函数：
+类似 [getter](https://pinia.vuejs.org/zh/core-concepts/getters)，action 也可通过 `this` 访问**整个 store 实例**，并支持**完整的类型标注(以及自动补全✨)**。**不同的是，`action` 可以是异步的**，你可以在它们里面 `await` 调用任何 API，以及其他 action！下面是一个使用 [Mande](https://github.com/posva/mande) 的例子。请注意，你使用什么库并不重要，只要你得到的是一个`Promise`，你甚至可以 (在浏览器中) 使用原生 `fetch` 函数：
 
 ```js
 import { mande } from 'mande'
@@ -1280,7 +1280,7 @@ pinia.use(({ store }) => {
 
 #### 在插件中调用 `$subscribe` %{#calling-subscribe-inside-plugins}%
 
-你也可以在插件中使用 [store.$subscribe](https://pinia.vuejs.org/zh/core-concepts/state.html#subscribing-to-the-state) 和 [store.$onAction](https://pinia.vuejs.org/zh/core-concepts/actions.html#subscribing-to-actions) 。
+你也可以在插件中使用 [store.$subscribe](https://pinia.vuejs.org/zh/core-concepts/state#subscribing-to-the-state) 和 [store.$onAction](https://pinia.vuejs.org/zh/core-concepts/actions#subscribing-to-actions) 。
 
 ```ts
 pinia.use(({ store }) => {
@@ -1470,7 +1470,7 @@ declare module 'pinia' {
 
 #### Nuxt.js %{#nuxt-js}%
 
-当[在 Nuxt 中使用 pinia](https://pinia.vuejs.org/zh/ssr/nuxt.html) 时，你必须先创建一个 [Nuxt 插件](https://nuxtjs.org/docs/2.x/directory-structure/plugins)。这样你才能访问到 `pinia` 实例：
+当[在 Nuxt 中使用 pinia](https://pinia.vuejs.org/zh/ssr/nuxt) 时，你必须先创建一个 [Nuxt 插件](https://nuxtjs.org/docs/2.x/directory-structure/plugins)。这样你才能访问到 `pinia` 实例：
 
 ```ts
 // plugins/myPiniaPlugin.js
@@ -1558,7 +1558,7 @@ router.beforeEach((to) => {
 
 当处理服务端渲染时，你将必须把 `pinia` 实例传递给 `useStore()`。这可以防止 pinia 在不同的应用实例之间共享全局状态。
 
-在[SSR 指南](../ssr/index.md)中有一整节专门讨论这个问题，这里只是一个简短的解释。
+在[SSR 指南](https://pinia.vuejs.org/zh/ssr/index)中有一整节专门讨论这个问题，这里只是一个简短的解释。
 
 # 服务端渲染 (SSR)
 
@@ -1567,13 +1567,13 @@ router.beforeEach((to) => {
 ### 服务端渲染 (SSR) %{#server-side-rendering-ssr}%
 
 :::tip
-如果你使用的是 **Nuxt.js**，你需要阅读的是[**这些说明文档**](https://pinia.vuejs.org/zh/ssr/nuxt.html)。
+如果你使用的是 **Nuxt.js**，你需要阅读的是[**这些说明文档**](https://pinia.vuejs.org/zh/ssr/nuxt)。
 :::
 
 只要你只在 `setup` 函数、`getter` 和 `action` 的顶部调用你定义的 `useStore()` 函数，那么使用 Pinia 创建 store 对于 SSR 来说应该是开箱即用的：
 
 ```vue
-<script setup>
+<script setup>2
 // 这是可行的，
 // 因为 pinia 知道在 `setup` 中运行的是什么程序。
 const main = useMainStore()
@@ -1822,12 +1822,12 @@ export default {
 
 ### 手册 %{#cookbook}%
 
-- [从 Vuex ≤4 迁移](https://pinia.vuejs.org/zh/cookbook/migration-vuex.html)。用于转换 Vuex ≤4 项目的迁移指南。
-- [HMR](https://pinia.vuejs.org/zh/cookbook/hot-module-replacement.html)：如何激活热更新并改善开发者体验。
-- [测试 Stores (WIP)](https://pinia.vuejs.org/zh/cookbook/testing.html): 如何对 Store 进行单元测试并在组件单元测试中模拟它们。
-- [Composing Stores](https://pinia.vuejs.org/zh/cookbook/composing-stores.html): 如何交叉使用多个 store，例如在购物车 store 中使用用户 store。
-- [选项式 API](https://pinia.vuejs.org/zh/cookbook/options-api.html): 如何在 `setup()` 外部使用 Pinia 而不使用组合式 API。
-- [从 0.0.7 迁移](./migration-0-0-7.md)。迁移指南，比更新日志有更多的例子。
+- [从 Vuex ≤4 迁移](https://pinia.vuejs.org/zh/cookbook/migration-vuex)。用于转换 Vuex ≤4 项目的迁移指南。
+- [HMR](https://pinia.vuejs.org/zh/cookbook/hot-module-replacement)：如何激活热更新并改善开发者体验。
+- [测试 Stores (WIP)](https://pinia.vuejs.org/zh/cookbook/testing): 如何对 Store 进行单元测试并在组件单元测试中模拟它们。
+- [Composing Stores](https://pinia.vuejs.org/zh/cookbook/composing-stores): 如何交叉使用多个 store，例如在购物车 store 中使用用户 store。
+- [选项式 API](https://pinia.vuejs.org/zh/cookbook/options-api): 如何在 `setup()` 外部使用 Pinia 而不使用组合式 API。
+- [从 0.0.7 迁移](https://pinia.vuejs.org/zh/cookbook/migration-0-0-7)。迁移指南，比更新日志有更多的例子。
 
 
 ## 从 Vuex ≤4 迁移
@@ -1838,7 +1838,7 @@ export default {
 
 #### 准备 %{#preparation}%
 
-首先，按照[入门指南](https://pinia.vuejs.org/zh/getting-started.html)安装 Pinia。
+首先，按照[入门指南](https://pinia.vuejs.org/zh/getting-started)安装 Pinia。
 
 #### 重构 store 的模块 %{#restructuring-modules-to-stores}%
 
@@ -2012,7 +2012,7 @@ export const useAuthUserStore = defineStore('auth/user', {
 2. 如果 `state` 不是一个函数的话 将它转换为一个函数。
 3. 转换 `getters`
     1. 删除任何返回同名 state 的 getters (例如： `firstName: (state) => state.firstName`)，这些都不是必需的，因为你可以直接从 store 实例中访问任何状态。
-    2. 如果你需要访问其他的 getter，可通过 `this` 访问它们，而不是第二个参数。记住，如果你使用 `this`，而且你不得不使用一个普通函数，而不是一个箭头函数，那么由于 TS 的限制，你需要指定一个返回类型，更多细节请阅读[这篇文档](https://pinia.vuejs.org/zh/core-concepts/getters.html#accessing-other-getters)
+    2. 如果你需要访问其他的 getter，可通过 `this` 访问它们，而不是第二个参数。记住，如果你使用 `this`，而且你不得不使用一个普通函数，而不是一个箭头函数，那么由于 TS 的限制，你需要指定一个返回类型，更多细节请阅读[这篇文档](https://pinia.vuejs.org/zh/core-concepts/getters#accessing-other-getters)
     3. 如果使用 `rootState` 或 `rootGetters` 参数，可以直接导入其他 store 来替代它们，或者如果它们仍然存在于 Vuex ，则直接从 Vuex 中访问它们。
 4. 转换 `actions`
     1. 从每个 action 中删除第一个 `context` 参数。所有的东西都应该直接从 `this` 中访问。
@@ -2028,7 +2028,7 @@ export const useAuthUserStore = defineStore('auth/user', {
 
 现在你的 Vuex 模块已经被转换为 Pinia store，但其他使用该模块的组件或文件也需要更新。
 
-如果你以前使用的是 Vuex 的 `map` 辅助函数，可以看看[不使用 setup() 的用法指南](https://pinia.vuejs.org/zh/cookbook/options-api.html)，因为这些辅助函数大多都是可以复用的。
+如果你以前使用的是 Vuex 的 `map` 辅助函数，可以看看[不使用 setup() 的用法指南](https://pinia.vuejs.org/zh/cookbook/options-api)，因为这些辅助函数大多都是可以复用的。
 
 如果你以前使用的是 `useStore`，那么就直接导入新 store 并访问其上的 state。比如说：
 
@@ -2100,11 +2100,11 @@ router.beforeEach((to, from, next) => {
 })
 ```
 
-更多细节可在[这里](https://pinia.vuejs.org/zh/core-concepts/outside-component-usage.html)找到。
+更多细节可在[这里](https://pinia.vuejs.org/zh/core-concepts/outside-component-usage)找到。
 
 #### Vuex 高级用法 %{#advanced-vuex-usage}%
 
-如果你的 Vuex store 使用了它所提供的一些更高级的功能，也有一些关于如何在 Pinia 中实现同样效果的指导。其中一些要点已经包含在这个[对比总结](https://pinia.vuejs.org/zh/introduction.html#comparison-with-vuex-3-x-4-x)里了。
+如果你的 Vuex store 使用了它所提供的一些更高级的功能，也有一些关于如何在 Pinia 中实现同样效果的指导。其中一些要点已经包含在这个[对比总结](https://pinia.vuejs.org/zh/introduction#comparison-with-vuex-3-x-4-x)里了。
 
 ##### 动态模块 %{#dynamic-modules}%
 
@@ -2112,13 +2112,13 @@ router.beforeEach((to, from, next) => {
 
 ##### 热更新 %{#hot-module-replacement}%
 
-支持 HMR，但需要一些修改，见[HMR 指南](https://pinia.vuejs.org/zh/cookbook/hot-module-replacement.html)。
+支持 HMR，但需要一些修改，见[HMR 指南](https://pinia.vuejs.org/zh/cookbook/hot-module-replacement)。
 
 ##### 插件 %{#plugins}%
 
 如果你使用的是一个公共的 Vuex 插件，那么请检查是否有一个 Pinia 版的替代品。如果没有，你就需要自己写一个，或者评估一下是否还有必要使用这个插件。
 
-如果你已经写了一个自己的插件，那么你完全可以更新它来适配 pinia，参考[插件指南](https://pinia.vuejs.org/zh/core-concepts/plugins.html)。
+如果你已经写了一个自己的插件，那么你完全可以更新它来适配 pinia，参考[插件指南](https://pinia.vuejs.org/zh/core-concepts/plugins)。
 
 
 ## 热更新
@@ -2166,7 +2166,7 @@ if (import.meta.hot) {
     - [Mocking getters](https://pinia.vuejs.org/zh/cookbook/testing.html#mocking-getters)
     - [Pinia 插件](https://pinia.vuejs.org/zh/cookbook/testing.html#pinia-plugins)
   - [端到端测试](https://pinia.vuejs.org/zh/cookbook/testing.html#e2e-tests)
-  - [对组件单元测试(Vue 2)](https://pinia.vuejs.org/zh/cookbook/testing.htmlhttps://pinia.vuejs.org/zh/cookbook/testing.html#unit-test-components-vue-2)
+  - [对组件单元测试(Vue 2)](https://pinia.vuejs.org/zh/cookbook/testing.html#unit-test-components-vue-2)
 
 #### 对 store 进行单元测试 %{#unit-testing-a-store}%
 
@@ -2258,7 +2258,7 @@ expect(store.someAction).toHaveBeenCalledTimes(1)
 expect(store.someAction).toHaveBeenLastCalledWith()
 ```
 
-请注意，如果你使用的是 Vue 2，`@vue/test-utils` 需要一个[轻微不同的配置](https://pinia.vuejs.org/zh/cookbook/testing.htmlhttps://pinia.vuejs.org/zh/cookbook/testing.html#unit-test-components-vue-2)。
+请注意，如果你使用的是 Vue 2，`@vue/test-utils` 需要一个[轻微不同的配置](https://pinia.vuejs.org/zh/cookbook/testing.html#unit-test-components-vue-2)。
 
 ##### 初始 State %{#initial-state}%
 
@@ -2317,7 +2317,7 @@ expect(store.someAction).toHaveBeenCalledTimes(1)
 
 ##### 指定 createSpy 函数 %{#specifying-the-createspy-function}%
 
-当使用 Jest，或 vitest 且设置 `globals: true` 时，`createTestingPinia` 会自动使用现有测试框架 (`jest.fn` 或 `vitest.fn`) 的 spy 函数存根 (stub) action。如果你使用的是不同的框架，你需要提供一个 [createSpy](/zh/api/interfaces/pinia_testing.TestingOptions.html#createspy) 选项：
+当使用 Jest，或 vitest 且设置 `globals: true` 时，`createTestingPinia` 会自动使用现有测试框架 (`jest.fn` 或 `vitest.fn`) 的 spy 函数存根 (stub) action。如果你使用的是不同的框架，你需要提供一个 [createSpy](https://pinia.vuejs.org/zh/zh/api/interfaces/pinia_testing.TestingOptions.html#createspy) 选项：
 
 ```js
 import sinon from 'sinon'
@@ -2408,10 +2408,10 @@ const store = useSomeStore() // 使用 pinia 的测试实例！
 即使你没有使用组合式 API，也可以使用 Pinia(如果你使用 Vue 2，你仍然需要安装 `@vue/composition-api` 插件)。虽然我们推荐你试着学习一下组合式 API，但对你和你的团队来说目前可能还不是时候，你可能正在迁移一个应用，或者有其他原因。你可以试试下面几个函数：
 
 - [mapStores](https://pinia.vuejs.org/zh/cookbook/options-api.html#giving-access-to-the-whole-store)
-- [mapState](https://pinia.vuejs.org/zh/core-concepts/state.html#usage-with-the-options-api)
-- [mapWritableState](https://pinia.vuejs.org/zh/core-concepts/state.html#modifiable-state)
-- ⚠️ [mapGetters](https://pinia.vuejs.org/zh/core-concepts/getters.html#without-setup) (只是为了迁移方便，请用 `mapState()` 代替)
-- [mapActions](https://pinia.vuejs.org/zh/core-concepts/actions.html#without-setup)
+- [mapState](https://pinia.vuejs.org/zh/core-concepts/state#usage-with-the-options-api)
+- [mapWritableState](https://pinia.vuejs.org/zh/core-concepts/state#modifiable-state)
+- ⚠️ [mapGetters](https://pinia.vuejs.org/zh/core-concepts/getters#without-setup) (只是为了迁移方便，请用 `mapState()` 代替)
+- [mapActions](https://pinia.vuejs.org/zh/core-concepts/actions#without-setup)
 
 #### 给予整个 store 的访问权 %{#giving-access-to-the-whole-store}%
 
@@ -2776,7 +2776,7 @@ module.exports {
 }
 ```
 
-[Nuxt 专属章节](https://pinia.vuejs.org/zh/ssr/nuxt.html)也值得一读。
+[Nuxt 专属章节](https://pinia.vuejs.org/zh/ssr/nuxt)也值得一读。
 
 
 ## 处理组合式函数
@@ -2842,7 +2842,7 @@ export const useVideoPlayer = defineStore('video', () => {
 
 #### 服务端渲染 %{#ssr}%
 
-当处理[服务端渲染](../ssr/index.md)时，你有一些需要额外注意的内容，以便在 store 中使用组合式函数。
+当处理[服务端渲染](https://pinia.vuejs.org/zh/ssr/index)时，你有一些需要额外注意的内容，以便在 store 中使用组合式函数。
 
 在 [Option Store](https://pinia.vuejs.org/zh/cookbook/composables.html#option-stores) 中，你需要定义一个 `hydrate()` 函数。当 store 在客户端 (浏览器) 上被实例化的过程中，创建 store 时有一个可用的初始状态时，这个函数就会被调用。我们需要定义这个函数的原因是，在这种情况下，`state()` 是不会被调用的。
 
