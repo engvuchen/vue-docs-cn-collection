@@ -1573,7 +1573,7 @@ router.beforeEach((to) => {
 只要你只在 `setup` 函数、`getter` 和 `action` 的顶部调用你定义的 `useStore()` 函数，那么使用 Pinia 创建 store 对于 SSR 来说应该是开箱即用的：
 
 ```vue
-<script setup>2
+<script setup>
 // 这是可行的，
 // 因为 pinia 知道在 `setup` 中运行的是什么程序。
 const main = useMainStore()
